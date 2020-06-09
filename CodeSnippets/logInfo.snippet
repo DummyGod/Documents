@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>loginfo</Title>
+			<Shortcut>logi</Shortcut>
+			<Description>Code snippet for an automatically implemented Error Logging Version: C# 3.0 or higher</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>partnercode</ID>
+					<ToolTip>partnercode</ToolTip>
+					<Default>partnercode</Default>
+				</Literal>
+				<Literal>
+					<ID>logMsg</ID>
+					<ToolTip>Log Message</ToolTip>
+					<Default>MyProperty</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[SpendLoggerHelper.LogInfo($logMsg$, actionName, long.Parse(ObjDatabricksResponse.partnercode), long.Parse(ObjDatabricksResponse.partnercode), controllerName);$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

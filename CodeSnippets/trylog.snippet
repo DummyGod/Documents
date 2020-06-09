@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>trylog</Title>
+			<Shortcut>trylog</Shortcut>
+			<Description>Code snippet for an automatically implemented try catch with error Logging Version: C# 3.0 or higher</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[try 
+	{	        
+		$selected$ $end$
+	}
+	catch (Exception ex)
+	{
+		SpendLoggerHelper.LogError(ex, actionName, userExecutionContext.BuyerPartnerCode, userExecutionContext.ContactCode, controllerName);
+		throw ex;
+	}]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>

@@ -1,0 +1,25 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<CodeSnippets  xmlns="http://schemas.microsoft.com/VisualStudio/2005/CodeSnippet">
+	<CodeSnippet Format="1.0.0">
+		<Header>
+			<Title>logError</Title>
+			<Shortcut>loge</Shortcut>
+			<Description>Code snippet for an automatically implemented Error Logging Version: C# 3.0 or higher</Description>
+			<Author>Microsoft Corporation</Author>
+			<SnippetTypes>
+				<SnippetType>Expansion</SnippetType>
+			</SnippetTypes>
+		</Header>
+		<Snippet>
+			<Declarations>
+				<Literal>
+					<ID>partnercode</ID>
+					<ToolTip>partnercode</ToolTip>
+					<Default>partnercode</Default>
+				</Literal>
+			</Declarations>
+			<Code Language="csharp"><![CDATA[SpendLoggerHelper.LogError(ex, actionName, userExecutionContext.BuyerPartnerCode, userExecutionContext.ContactCode, controllerName);$end$]]>
+			</Code>
+		</Snippet>
+	</CodeSnippet>
+</CodeSnippets>
