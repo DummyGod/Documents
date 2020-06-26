@@ -1,0 +1,12 @@
+<h3>Uploading the File and saving in directory or folder</h3>
+<p>
+<br>string fileName = Path.GetFileName(FileUpload1.PostedFile.FileName);
+   <br> FileUpload1.PostedFile.SaveAs(Server.MapPath("~/Uploads/") + fileName);
+    <br>Response.Redirect(Request.Url.AbsoluteUri);
+	</p>
+	
+	
+	<h3></h3>
+	<p>
+
+	</p>

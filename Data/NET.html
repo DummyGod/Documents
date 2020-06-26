@@ -1,0 +1,187 @@
+<h3>TUPLE</h3>
+<h5>View</h5>
+<p>
+@model Tuple&lt;model.class1,model.class2&gt;
+<br>m.item1.varofclass1
+<br>m.item2.varofclass2
+</p>
+
+<h5>ActionResult(GET)</h5>
+class1 obj1=new class1();
+<br>class2 obj2=new class2();
+<br>Tuple<class1,class2> t=new Tuple&lt;class1,class2&gt;(obj1,obj2);
+<br>return view(t);
+
+
+<h3> Send/Recieve hex data to TCP IP Port</h3>
+<p>
+<br> IPEndPoint IP = new IPEndPoint(IPAddress.Parse("192.168.0.102"), 9998);
+<br>            Socket server = new Socket(AddressFamily.InterNetwork, SocketType.Stream, ProtocolType.Tcp);
+<br>            server.Connect(IP);
+<br>			  byte[] b = new byte[]{ 0x00,0x06,0x30,0x30,0x30,0x30,0x4E,0x43 }; 
+<br>            string hxs = BitConverter.ToString(b);
+<br>            int sent= server.Send(b);
+<br>            byte[] bt = new byte[40];
+<br>            var rec= server.Receive(bt);
+</p>
+
+
+<h3>One Task At a  Time</h3> 
+
+<p>
+<br>        Transaction objTransaction = new Transaction();
+<br> Task&lt;Dictionary&lt;string, string&gt;&gt; task = Task&lt;Dictionary&lt;string, string&gt;&gt;.Factory.StartNew(() =&gt;
+<br>            {
+<br>                Dictionary&lt;string, string&gt; result = objTransaction.Exec_BalanceInquiry(field2, field3, field41, field42, createdby);
+<br>                return result;
+<br>            });
+<br>
+<br>            task.Wait();
+<br>            Dictionary&lt;string, string&gt; output = task.Result;
+<br>            task.Dispose();
+<br>            return output;
+</p>
+<h3> The maximum message size quota for incoming messages (65536) has been exceeded. To increase the quota, use the MaxReceivedMessageSize property on the appropriate binding element.</h3>
+<p> &lt;system.serviceModel&gt;
+<br>        &lt;bindings&gt;
+<br>            &lt;basicHttpBinding&gt;
+<br>               &lt;binding name="<span style="color:red">basicHttp</span>" allowCookies="true"
+<br>                 maxReceivedMessageSize="2147483647" 
+<br>                 maxBufferSize="2147483647"
+<br>                 maxBufferPoolSize="2147483647"&gt;
+<br>            &lt;readerQuotas maxDepth="32" 
+<br>                 maxArrayLength="2147483647"
+<br>                 maxStringContentLength="2147483647"/&gt;
+<br>        &lt;/binding&gt;
+<br>		
+<br>		</P>
+&lt;client&gt;
+<br>&lt;endpoint address="http://220.226.207.189/LMS_Android_SAP_Service/Service1.svc"
+<br>           binding="basicHttpBinding" bindingConfiguration="<span style="color:red">basicHttp</span>"
+<br>       contract="LMSUat.IService1" name="<span style="color:red">basicHttp</span>" /&gt;
+
+<h3> dbcontext linq</h3>
+<h4>Select Single record with id</h4>
+<p>objCNSBServerDBEntities.adm_CustomerManagement.SingleOrDefault(User => User.customerDetailId == 12)  //return record</p>
+<h4>check if record exist</h4>
+<p>objCNSBServerDBEntities.adm_CustomerManagement.any(User => User.customerDetailId == 12) //return true false
+</p>
+
+<h3>windows service</h3>
+<p>
+</p>
+<h3>Could not establish trust relationship for the SSL/TLS secure channel with authority</h3>
+<p>
+System.Net.ServicePointManager.ServerCertificateValidationCallback = ((sender, certificate, chain, sslPolicyErrors) => true);  //add before calling methid on service
+</P>
+</br>
+<pre>ServicePointManager.Expect100Continue = true;
+ServicePointManager.SecurityProtocol = SecurityProtocolType.Tls12;
+</pre>
+
+<h3>All Conversion </h3>
+<p>byte[] a=Encoding.UTF8.GetBytes("string");  // string to byte</p>
+
+<h3>Download File</h3>
+<p>
+public FileResult DownloadInitial(string FileName)
+  <br>      {
+  <br>          byte[] res = System.IO.File.ReadAllBytes(Server.MapPath(@"/InitialSettlementFiles/" + objCookieName["Userid"] +"/"+ FileName));
+      <br>      return File(res,"application/vnc.ms-excel",FileName);
+        <br>}
+</p>
+
+<h3>Hard coded DropDownlist</h3>
+<p>SelectList BCList = new SelectList(new[] {new SelectListItem{Text="",Value=""},new SelectListItem{Text="",Value=""}});
+</p>
+
+<h3>Reports Expression</h3>
+<p>
+</BR>	Switch(Fields!CustomerTransactionId.Value <= Parameters!range1.Value, Fields!CollectedAmmount.Value * 10 /100,
+</BR>	Fields!CustomerTransactionId.Value <=Parameters!range2.Value , Fields!CollectedAmmount.Value * 5 /100,
+</BR>	Fields!CustomerTransactionId.Value > Parameters!range2.Value, Fields!CollectedAmmount.Value * 2 /100)
+	</p>
+<h3>Report Data</h3><p>alt+clt+D</p>
+	<h3>Steps For Report Generation</h3>
+	<p>
+		 1) Create DataSet .xsd (COntains Store Procedure required for rdlc)
+	</br>2) Create RDLC File .rdlc (Contains Report tables etc) bind dataset to rdlc 
+	</br>3)Create WebForm add Script manager then Report viewer adn bind rldc file to reportviewer
+	 </br>in webform.cs the name of datasource should be the name of dataset that is use while adding dataset in Report File(RDLC)
+	</p>
+	
+	
+	<h3>Schedular</h3>
+	<p>
+	Schedular 
+
+
+new project windows service 
+click on service.cs
+right click on service.cs(design) ===>add installer
+serviceprocessinstall property change user>local system 
+run command from visualstudio developer cmd installutil serice.exe (run as admin)
+for uninstal installutil /u seri.exe
+	</p>
+	
+	
+	<h3> Calling AntiFrogery actionresult from ajax</h3>
+	<p>
+	@using (Html.BeginForm(null, null, FormMethod.Post, new { id = "__AjaxAntiForgeryForm" }))
+{
+    @Html.AntiForgeryToken()
+}
+
+<div id="myDiv" data-url="@Url.Action("Index", "Home")">
+    Click me to send an AJAX request to a controller action
+    decorated with the [ValidateAntiForgeryToken] attribute
+</div>
+
+<script type="text/javascript">
+    $('#myDiv').submit(function () {
+        var form = $('#__AjaxAntiForgeryForm');
+        var token = $('input[name="__RequestVerificationToken"]', form).val();
+        $.ajax({
+            url: $(this).data('url'),
+            type: 'POST',
+            data: { 
+                __RequestVerificationToken: token, 
+                someValue: 'some value' 
+            },
+            success: function (result) {
+                alert(result.someValue);
+            }
+        });
+        return false;
+    });
+</script>
+	</p>
+	
+	<h3>return raw HTML from ActionResult </h3>
+return content("<input type=''>");
+
+or public string ds() //thoug return type is string it gets called for post
+{
+return "<inptu type='text'/>";
+}
+
+<h3>Mix Mode Assembly</h3>
+<p>
+&lt;configuration&gt;
+  <br/>&lt;startup useLegacyV2RuntimeActivationPolicy="true"&gt;
+  <br/>  &lt;supportedRuntime version="v4.0" sku=".NETFramework,Version=v4.0,Profile=Client"/&gt;
+  <br/>&lt;/startup&gt;
+  
+  <p>
+  
+  
+  <h3>my sql with .net</h3>
+  <pre>
+  install xamp server 
+  1)start apache (if sql server is install conflict will come for port 80 so change port for apache from two location
+  C:\xampp\apache\conf\httpd.conf   >>change Listen  from 80 to any port 
+  C:\xampp\apache\conf\extra\httpd-ssl.conf >> change listen from 443 to any 
+  )
+ 2) start my sql 
+ 3) insatll mysql-connector-net-6.6.5.msi 
+  </pre>
