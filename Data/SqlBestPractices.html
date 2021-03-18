@@ -1,0 +1,122 @@
+Is code well formatted and structured
+
+BEGIN..END is added in SPs
+
+SET NOCOUNT ON is added in SPs
+
+Ensure the length of parameters in SP is equal to or greater than base column length
+
+All tables variables/#temp tables defined should on top to avoid sp recomiplation
+
+All #temp tables dropped at the bottom after their use. e.g DROP TABLE IF EXISTS #TEMP
+
+Are all variables properly defined with meaningful names?
+
+Do all assigned variables have proper data type and size defined and should match with actual table types?
+
+Are there any unused variables/joins/unused code? remove unused variables/codes
+
+Don’t use reserved words to variables or column names
+
+No hard coding values in SP
+
+Avoid Data type conversion
+
+Add With(Nolock) in select statement
+
+Avoid SELECT *
+
+Avoid SELECT * INTO FROM TABLE
+
+Specify column name always in INSERT statement
+
+Check all joins/where clause condition properly added
+
+Order by clause – always use column names instead of column sequence 1,2,3
+
+Check if Joins are happening on mostly indexed columns and as per index sequence definition
+
+Query should do index seek instead of index scan or table scan – mostly
+
+Avoid cursor, use while loop if possible
+
+Avoid dynamic SQL if possible and always use EXEC sp_executesql @sql instead of EXEC @sql
+
+Check the actual query execution plan always in Dev before promoting code to QC
+
+Fn_Split () – VS – STRING_SPLIT – use SQL built in STRING_SPLIT()
+
+FOR XML Path vs STRING_AGG – use SQL built in String_AGG()
+
+Always use prefix(Qualifying table names) and alias name. e.g dbo.DM_Documents,  eg EXEC dbo.getOrder, eg. dbo.fn_getTaxValue()
+
+Distinct vs Group by – use Group by clause
+
+Use IF EXISTS clause to check for row existence instead of  SELECT COUNT(1)
+
+Like clause – use efficiently
+
+Also avoid searching using not equals operators (<> and NOT) as they result in table and index scans. Alternatives to NOT IN and NOT Exists
+
+EXCEPT or NOT EXIST clause can be used in place of LEFT JOIN or NOT IN for better performance.
+
+UNION All vs UNION - UNION all is better that UNION since it does not have to do sort and distinct
+
+Order by clause – use when really required else do ordering at API side
+
+use CTE when recursive logic is required else use #temp table
+
+IN Vs Inner Join – use Inner join
+
+Avoid functions in where and join clause
+
+Avoid UDF and convert it into stored proc
+
+Use @table variable – if rows count <100
+
+Use #temp table – if rows count >100
+
+Are any modules excessively complex and should be restructured or split into multiple code/stored proc
+
+Are all loops, branches and logic complete, correct and properly tested
+
+Delete or Update statement should have where clause
+
+Queries with ToP should have ORDER BY Clause
+
+NULL comparation should be avoided directly
+
+Do not use NOLOCK or READUNCOMMITTED in UPDATE or DELETE.
+  
+  <b>Tables</b>
+  Proper naming convention and data type and size defined for tables
+
+Is table having Primary key
+
+Is table having Timestamp columns
+
+Nvarchar(Max) or Varchar(Max) – really required
+
+Use Unicode datatypes, like NCHAR, NVARCHAR only if it’s needed, as they use twice as much space as non-Unicode datatypes.
+
+Constraints should have proper name
+
+Is Index added on required columns effectively - re-valid all possible scenarios before adding index. consider how table will filtered on most possible columns
+
+Is Primary key defined as narrow and mostly on integer data type.
+
+Avoid primary key creation on such columns those are updating frequently
+
+Indexes are on frequently used columns, avoid too many indexes, avoid index on string data type if possible, Use WHERE, JOIN, ORDER BY, SELECT Column Order When Creating Indexes
+
+If foreign key defined, then consider adding non clustered index
+
+No reserved words – for columns
+
+No Trigger –on table
+
+Do not add new column in between existing columns- during DB deployment it will drop the table and create new table.
+
+No deprecated data type used – TEXT, NTEXT, IMAGE
+
+Is archive/purging policy in place – big table?
